@@ -17,8 +17,7 @@ function M.run_go_test()
 			files = files..' '..each
 		end
 	end
-	local p = io.popen('cd '..dir..' && go test -c -vet=off '..files..' 2>&1')
-	print('cd '..dir..' && go test -c -vet=off '..files..' 2>&1')
+	local p = io.popen('cd '..dir..' && go test -v -c -vet=off '..files..' 2>&1')
 	local out = p:read('*a')
 	local status = {p:close()}
 	ui.print(out)
