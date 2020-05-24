@@ -1,6 +1,7 @@
 local M = {}
 
 function M.enclose_selection(left, right)
+	buffer:begin_undo_action()
 	if buffer.selection_empty then
 		buffer.add_text(left)
 		buffer.add_text(right)
@@ -8,6 +9,7 @@ function M.enclose_selection(left, right)
 	else
 		textadept.editing.enclose(left, right)
 	end
+	buffer:end_undo_action()
 end
 
 function M.delete_line_or_lines()
@@ -43,10 +45,13 @@ function M.copy_line_or_selection()
 end
 
 function M.duplicate_line_or_selection()
+	buffer:begin_undo_action()
 	if buffer.selection_empty then
 		buffer:line_duplicate()
 	else
 		buffer.selection_duplicate()
 	end
+	buffer:end_undo_action()
 end
+
 return M
