@@ -32,8 +32,11 @@ events.connect(events.FILE_AFTER_SAVE, function()
 	if status[3] == 0 then
 		buffer.reload()
 		return
+	elseif status[3] == 127 then
+		ui.print("exit code 127\n"..M.format_command..": command not found!\nMake sure you have "..M.format_command.." installed in your $PATH.")
+		return
 	end
-	local line, msg = out:match(':(%d-):%d-:([^\n]+)')
+	local line,msg = out:match(':(%d-):%d-:([^\n]+)')
 	line = tonumber(line)
 	buffer.annotation_clear_all()
 	buffer.annotation_visible = buffer.ANNOTATION_BOXED
@@ -42,3 +45,4 @@ events.connect(events.FILE_AFTER_SAVE, function()
 end)
 
 return M
+
