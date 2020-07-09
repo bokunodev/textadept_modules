@@ -10,14 +10,18 @@ textadept.run.compile_commands.go = 'go build '..GOFLAGS..' .'
 textadept.run.error_patterns.go = {'^(.-):(%d+):(%d+): (.+)$'}
 
 function M.run_go_test()
-  local files, each = '',''
   local dir = string.gsub(buffer.filename,'[^'..PATHSEP..']+$','')
-  for each in lfs.dir(dir) do
-    if lfs.attributes(dir..each,'mode') == 'file' and string.find(each,'%.go$') then
-      files = files..' '..each
+  local _,obj = lfs.dir(dir)
+  local each,go_files = '',''
+  each = obj:next()
+  while each ~= nil do
+    if lfs.attributes(each,"mode") == "file" and string.find(each,"%.go$") then
+      go_files = go_files..string.format(" '%s%s'",dir,each)
     end
+    each = obj:next()
   end
-  local p = io.popen('cd '..dir..' && go test -v -c -vet=off '..files..' 2>&1')
+  obj:close()
+  local p = io.popen('cd '..dir..' && go test -v -c -vet=off '..go_files..' 2>&1')
   local out = p:read('*a')
   local status = {p:close()}
   ui.print(out)
