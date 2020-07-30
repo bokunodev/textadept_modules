@@ -1,10 +1,10 @@
 local M = {}
 
-M.format_command = "gofmt"
+M.format_command = 'gofmt'
 
 local PATHSEP = not WIN32 and '/' or '\\'
-local GOPATH = os.getenv("GOPATH")
-local GOFLAGS = '-v -trimpath -ldflags="-s -w -buildid=" -asmflags=-trimpath='..GOPATH..' -gcflags=-trimpath='..GOPATH
+local GOPATH = os.getenv('GOPATH')
+local GOFLAGS = '-v -trimpath -ldflags=\'-s -w -buildid=\' -asmflags=-trimpath='..GOPATH..' -gcflags=-trimpath='..GOPATH
 textadept.run.run_commands.go = 'go run '..GOFLAGS..' .'
 textadept.run.compile_commands.go = 'go build '..GOFLAGS..' .'
 textadept.run.error_patterns.go = {'^(.-):(%d+):(%d+): (.+)$'}
@@ -15,8 +15,8 @@ function M.run_go_test()
   local each,go_files = '',''
   each = obj:next()
   while each ~= nil do
-    if lfs.attributes(each,"mode") == "file" and string.find(each,"%.go$") then
-      go_files = go_files..string.format(" '%s%s'",dir,each)
+    if lfs.attributes(each,'mode') == 'file' and string.find(each,'%.go$') then
+      go_files = go_files..string.format(' "%s%s"',dir,each)
     end
     each = obj:next()
   end
@@ -37,7 +37,7 @@ events.connect(events.FILE_AFTER_SAVE, function()
     buffer.reload()
     return
   elseif status[3] == 127 then
-    ui.print("exit code 127\n"..M.format_command..": command not found!\nMake sure you have "..M.format_command.." installed in your $PATH.")
+    ui.print(M.format_command..' not installed!.')
     return
   end
   local line,msg = out:match(':(%d-):%d-:([^\n]+)')
@@ -49,4 +49,3 @@ events.connect(events.FILE_AFTER_SAVE, function()
 end)
 
 return M
-
