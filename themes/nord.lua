@@ -1,88 +1,57 @@
--- Copyright 2007-2020 Mitchell mitchell.att.foicica.com. See LICENSE.
--- Dark theme for Textadept.
--- Contributions by Ana Balan.
+local view, colors, styles = view, lexer.colors, lexer.styles
 
-local view = view
-local property, property_int = view.property, view.property_int
+colors.true_black = 0x000000
+colors.black = 0x40342e
+colors.light_black = 0x52423b
+colors.grey = 0x5e4c43
+colors.light_grey = 0x6a564c
 
---[[ Nord palette
-  Polar Night
-#2e3440
-#3b4252
-#434c5e
-#4c566a
-  Snow Storm
-#d8dee9
-#e5e9f0
-#eceff4
-  Frost
-#8fbcbb
-#88c0d0
-#81a1c1
-#5e81ac
-  Aurora
-#bf616a
-#d08770
-#ebcb8b
-#a3be8c
-#b48ead
-]]
+colors.white = 0xe9ded8
+colors.whiter = 0xf0e9e5
+colors.whitest = 0xf4efec
 
-property["color.black"] = 0x40342e
-property["color.black2"] = 0x52423b
-property["color.grey"] = 0x5e4c43
-property["color.grey2"] = 0x6a564c
---
-property["color.white3"] = 0xe9ded8
-property["color.white2"] = 0xf0e9e5
-property["color.white"] = 0xf4efec
---
-property["color.greenish_blue"] = 0xbbbc8f
-property["color.cyan"] = 0xd0c088
-property["color.blue2"] = 0xc1a181
-property["color.blue"] = 0xac815e
---
-property["color.red"] = 0x6a61bf
-property["color.orange"] = 0x7087d0
-property["color.yellow"] = 0x8bcbeb
-property["color.green"] = 0x8cbea3
-property["color.magenta"] = 0xad8eb4
+colors.tosca = 0xbbbc8f
+colors.cyan = 0xd0c088
+colors.blue_grey = 0xc1a181
+colors.blue = 0xac815e
 
--- Default font.
-property['font'], property['fontsize'] = 'Cartograph CF', 10
-if WIN32 then
-  property['font'] = 'Courier New'
-elseif OSX then
-  property['font'], property['fontsize'] = 'Monaco', 12
-end
+colors.red = 0x6a61bf
+colors.orange = 0x7087d0
+colors.yellow = 0x8bcbeb
+colors.green = 0x8cbea3
+colors.purple = 0xad8eb4
 
 -- Predefined styles.
-property['style.default'] = 'font:$(font),size:$(fontsize),'..
-                            'fore:$(color.white3),back:$(color.black)'
-property['style.linenumber'] = 'fore:$(color.greenish_blue),back:$(color.black2)'
---property['style.controlchar'] =
-property['style.indentguide'] = 'fore:$(color.grey2)'
-property['style.calltip'] = 'fore:$(color.white3),back:$(color.black2)'
-property['style.folddisplaytext'] = 'fore:$(color.black2)'
+styles.default = {
+  font = 'Cartograph CF', size = 10, fore = colors.white, back = colors.black
+}
+styles.line_number = {fore = colors.tosca, back = colors.light_black}
+--styles.control_char =
+styles.indent_guide = {fore = colors.light_black}
+styles.call_tip = {fore = colors.tosca, back = colors.light_black}
+styles.fold_display_text = {fore = colors.tosca}
 
 -- Token styles.
-property['style.class'] = 'fore:$(color.blue)'
-property['style.comment'] = 'fore:$(color.grey2)'
-property['style.constant'] = 'fore:$(color.cyan)'
-property['style.embedded'] = 'fore:$(color.grey2),back:$(color.blue2)'
-property['style.error'] = 'fore:$(color.white),back:$(color.red),italics'
-property['style.function'] = 'fore:$(color.orange)'
-property['style.identifier'] = 'fore:$(color.white3)'
-property['style.keyword'] = 'fore:$(color.magenta)'
-property['style.label'] = 'fore:$(color.red),bold'
-property['style.number'] = 'fore:$(color.cyan)'
-property['style.operator'] = 'fore:$(color.green)'
-property['style.preprocessor'] = 'fore:$(color.red),bold'
-property['style.regex'] = 'fore:$(color.green)'
-property['style.string'] = 'fore:$(color.yellow)'
-property['style.type'] = 'fore:$(color.cyan),italics'
-property['style.variable'] = 'fore:$(color.blue)'
-property['style.whitespace'] = ''
+styles.class = {fore = colors.blue}
+styles.comment = {fore = colors.light_grey, back = colors.true_black}
+styles.constant = {fore = colors.red}
+styles.embedded = {fore = colors.magenta, back = colors.true_black, italics = true}
+styles.error = {fore = colors.white, back = colors.red, italics = true}
+styles['function'] = {fore = colors.yellow, italics = true}
+styles.identifier = {}
+styles.keyword = {fore = colors.cyan}
+styles.label = {fore = colors.orange}
+styles.number = {fore = colors.red}
+styles.operator = {fore = colors.green}
+styles.preprocessor = {fore = colors.purple}
+styles.regex = {fore = colors.green}
+styles.string = {fore = colors.red}
+styles.type = {fore = colors.cyan}
+styles.variable = {fore = colors.blue}
+styles.whitespace = {}
+
+styles.bracelight = {fore = colors.whitest, back = colors.green}
+styles.bracebad = {fore = colors.whitest, back = colors.red}
 
 -- Multiple Selection and Virtual Space
 --view.additional_sel_alpha =
@@ -91,45 +60,42 @@ property['style.whitespace'] = ''
 --view.additional_caret_fore =
 
 -- Caret and Selection Styles.
-view:set_sel_fore(true, property_int['color.white3'])
-view:set_sel_back(true, property_int['color.grey'])
---view.sel_alpha =
-view.caret_fore = property_int['color.white']
-view.caret_line_back = property_int['color.black']
---view.caret_line_back_alpha =
+-- Selection Style
+view:set_sel_fore(true, colors.whitest)
+view:set_sel_back(true, colors.blue_grey)
+view.sel_alpha = 50
+-- Current line Style
+view.caret_fore = colors.tosca
+view.caret_line_back = colors.blue_grey
+view.caret_line_back_alpha = 50
 
 -- Fold Margin.
-view:set_fold_margin_color(true, property_int['color.black'])
-view:set_fold_margin_hi_color(true, property_int['color.black2'])
+view:set_fold_margin_color(true, colors.black)
+view:set_fold_margin_hi_color(true, colors.light_black)
 
 -- Markers.
-local MARK_BOOKMARK = textadept.bookmarks.MARK_BOOKMARK
---view.marker_fore[MARK_BOOKMARK] = property_int['color.black']
-view.marker_back[MARK_BOOKMARK] = property_int['color.blue']
---view.marker_fore[textadept.run.MARK_WARNING] = property_int['color.black']
-view.marker_back[textadept.run.MARK_WARNING] = property_int['color.orange']
---view.marker_fore[textadept.run.MARK_ERROR] = property_int['color.black']
-view.marker_back[textadept.run.MARK_ERROR] = property_int['color.red']
+--view.marker_fore[textadept.bookmarks.MARK_BOOKMARK] = colors.black
+view.marker_back[textadept.bookmarks.MARK_BOOKMARK] = colors.tosca
+--view.marker_fore[textadept.run.MARK_WARNING] = colors.black
+view.marker_back[textadept.run.MARK_WARNING] = colors.yellow
+--view.marker_fore[textadept.run.MARK_ERROR] = colors.black
+view.marker_back[textadept.run.MARK_ERROR] = colors.red
 for i = buffer.MARKNUM_FOLDEREND, buffer.MARKNUM_FOLDEROPEN do -- fold margin
-  view.marker_fore[i] = property_int['color.black']
-  view.marker_back[i] = property_int['color.greenish_blue']
-  view.marker_back_selected[i] = property_int['color.grey2']
+  view.marker_fore[i] = colors.black
+  view.marker_back[i] = colors.tosca
+  view.marker_back_selected[i] = colors.tosca
 end
 
 -- Indicators.
-view.indic_fore[ui.find.INDIC_FIND] = property_int['color.yellow']
-view.indic_alpha[ui.find.INDIC_FIND] = 255
-local INDIC_BRACEMATCH = textadept.editing.INDIC_BRACEMATCH
-view.indic_fore[INDIC_BRACEMATCH] = property_int['color.grey2']
-local INDIC_HIGHLIGHT = textadept.editing.INDIC_HIGHLIGHT
-view.indic_fore[INDIC_HIGHLIGHT] = property_int['color.orange']
-view.indic_alpha[INDIC_HIGHLIGHT] = 255
-local INDIC_PLACEHOLDER = textadept.snippets.INDIC_PLACEHOLDER
-view.indic_fore[INDIC_PLACEHOLDER] = property_int['color.grey']
+view.indic_fore[ui.find.INDIC_FIND] = colors.yellow
+view.indic_alpha[ui.find.INDIC_FIND] = 128
+view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.grey
+view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.orange
+view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
+view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.blue_grey
 
 -- Call tips.
-view.call_tip_fore_hlt = property_int['color.blue2']
+view.call_tip_fore_hlt = colors.tosca
 
 -- Long Lines.
-view.edge_color = property_int['color.black2']
-
+view.edge_color = colors.light_grey

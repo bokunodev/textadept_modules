@@ -16,7 +16,7 @@ keys['ctrl+c'] = function() _M['m/f'].copy_line_or_selection() end
 keys['ctrl+d'] = function() _M['m/f'].duplicate_line_or_selection() end
 
 keys['alt+B'] = function() textadept.bookmarks.toggle() end
-keys['alt+S'] = function()	io.save_all_files() end
+keys['alt+S'] = function() io.save_all_files() end
 
 events.connect(events.LEXER_LOADED, function(lang)
 	if lang == 'go' then

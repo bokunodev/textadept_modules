@@ -40,7 +40,7 @@ events.connect(events.FILE_AFTER_SAVE, function()
     ui.print(M.format_command..' not installed!.')
     return
   end
-  local line,msg = out:match(':(%d-):%d-:([^\n]+)')
+  local line,col,msg = string.match(out,':(%d-):(%d)-:([^\n]+)')
   line = tonumber(line)
   buffer.annotation_clear_all()
   buffer.annotation_visible = buffer.ANNOTATION_BOXED
