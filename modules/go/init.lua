@@ -24,6 +24,8 @@ events.connect(events.FILE_AFTER_SAVE, function()
 end)
 
 snippets.go = {
+    ['if err'] = 'err = %1\nif err != nil {\n\t%0\n}\n',
+    ['func'] = 'func %1%(%2)%3 {\n\t%0\n}',
 }
 
 return M

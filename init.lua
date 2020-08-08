@@ -24,8 +24,8 @@ buffer.view_ws = buffer.WS_VISIBLEAFTERINDENT
 buffer.tab_draw_mode = buffer.TD_STRIKEOUT
 buffer.wrap_mode = buffer.WRAP_NONE
 buffer.eol_mode = buffer.EOL_LF
-buffer.tab_indents = true
-buffer.use_tabs = true
+buffer.tab_indents = false
+buffer.use_tabs = false
 buffer.caret_width = 2
 buffer.tab_width = 4
 
