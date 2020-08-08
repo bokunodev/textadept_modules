@@ -35,7 +35,7 @@ styles.fold_display_text = {fore = colors.tosca}
 styles.class = {fore = colors.blue}
 styles.comment = {fore = colors.light_grey, back = colors.true_black}
 styles.constant = {fore = colors.red}
-styles.embedded = {fore = colors.magenta, back = colors.true_black, italics = true}
+styles.embedded = {fore = colors.purple, back = colors.true_black}
 styles.error = {fore = colors.white, back = colors.red, italics = true}
 styles['function'] = {fore = colors.yellow, italics = true}
 styles.identifier = {}
@@ -87,21 +87,25 @@ for i = buffer.MARKNUM_FOLDEREND, buffer.MARKNUM_FOLDEROPEN do -- fold margin
 end
 
 -- Indicators.
-view.indic_fore[ui.find.INDIC_FIND] = colors.tosca
--- view.indic_alpha[ui.find.INDIC_FIND] = 128
-view.indic_style[ui.find.INDIC_FIND] = view.INDIC_COMPOSITIONTHICK
+view.indic_fore[ui.find.INDIC_FIND] = colors.blue_grey
+view.indic_under[ui.find.INDIC_FIND] = true
+view.indic_alpha[ui.find.INDIC_FIND] = 128
+view.indic_style[ui.find.INDIC_FIND] = view.INDIC_GRADIENT -- FULLBOX
 
-view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.tosca
--- view.indic_alpha[textadept.editing.INDIC_BRACEMATCH] = 128
-view.indic_style[textadept.editing.INDIC_BRACEMATCH] = view.INDIC_COMPOSITIONTHICK
+view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.blue_grey
+view.indic_under[textadept.editing.INDIC_BRACEMATCH] = true
+view.indic_alpha[textadept.editing.INDIC_BRACEMATCH] = 128
+view.indic_style[textadept.editing.INDIC_BRACEMATCH] = view.INDIC_GRADIENT -- FULLBOX
 
-view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.tosca
--- view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
-view.indic_style[textadept.editing.INDIC_HIGHLIGHT] = view.INDIC_COMPOSITIONTHICK
+view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.blue_grey
+view.indic_under[textadept.editing.INDIC_HIGHLIGHT] = true
+view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
+view.indic_style[textadept.editing.INDIC_HIGHLIGHT] = view.INDIC_GRADIENT -- FULLBOX
 
-view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.tosca
--- view.indic_alpha[textadept.snippets.INDIC_PLACEHOLDER] = 128
-view.indic_style[textadept.snippets.INDIC_PLACEHOLDER] = view.INDIC_COMPOSITIONTHICK
+view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.blue_grey
+view.indic_under[textadept.snippets.INDIC_PLACEHOLDER] = true
+view.indic_alpha[textadept.snippets.INDIC_PLACEHOLDER] = 128
+view.indic_style[textadept.snippets.INDIC_PLACEHOLDER] = view.INDIC_GRADIENT -- FULLBOX
 
 -- Call tips.
 view.call_tip_fore_hlt = colors.tosca
