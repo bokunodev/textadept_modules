@@ -1,5 +1,5 @@
 _M['go'] = require('go')
-_M['go'].format_command = 'goimports'
+_M['go'].format_command = 'goimports -w'
 
 _M['m/f'] = require('functions')
 

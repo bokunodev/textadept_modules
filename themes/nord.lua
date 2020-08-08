@@ -23,7 +23,7 @@ colors.purple = 0xad8eb4
 
 -- Predefined styles.
 styles.default = {
-  font = 'Cartograph CF', size = 10, fore = colors.white, back = colors.black
+    font = 'Cartograph CF', size = 10, fore = colors.white, back = colors.black
 }
 styles.line_number = {fore = colors.tosca, back = colors.light_black}
 --styles.control_char =
@@ -75,24 +75,33 @@ view:set_fold_margin_hi_color(true, colors.light_black)
 
 -- Markers.
 --view.marker_fore[textadept.bookmarks.MARK_BOOKMARK] = colors.black
-view.marker_back[textadept.bookmarks.MARK_BOOKMARK] = colors.tosca
+view.marker_back[textadept.bookmarks.MARK_BOOKMARK] = colors.green
 --view.marker_fore[textadept.run.MARK_WARNING] = colors.black
 view.marker_back[textadept.run.MARK_WARNING] = colors.yellow
 --view.marker_fore[textadept.run.MARK_ERROR] = colors.black
 view.marker_back[textadept.run.MARK_ERROR] = colors.red
 for i = buffer.MARKNUM_FOLDEREND, buffer.MARKNUM_FOLDEROPEN do -- fold margin
-  view.marker_fore[i] = colors.black
-  view.marker_back[i] = colors.tosca
-  view.marker_back_selected[i] = colors.tosca
+    view.marker_fore[i] = colors.black
+    view.marker_back[i] = colors.tosca
+    view.marker_back_selected[i] = colors.tosca
 end
 
 -- Indicators.
-view.indic_fore[ui.find.INDIC_FIND] = colors.yellow
-view.indic_alpha[ui.find.INDIC_FIND] = 128
-view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.grey
-view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.orange
-view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
-view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.blue_grey
+view.indic_fore[ui.find.INDIC_FIND] = colors.tosca
+-- view.indic_alpha[ui.find.INDIC_FIND] = 128
+view.indic_style[ui.find.INDIC_FIND] = view.INDIC_COMPOSITIONTHICK
+
+view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.tosca
+-- view.indic_alpha[textadept.editing.INDIC_BRACEMATCH] = 128
+view.indic_style[textadept.editing.INDIC_BRACEMATCH] = view.INDIC_COMPOSITIONTHICK
+
+view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.tosca
+-- view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
+view.indic_style[textadept.editing.INDIC_HIGHLIGHT] = view.INDIC_COMPOSITIONTHICK
+
+view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.tosca
+-- view.indic_alpha[textadept.snippets.INDIC_PLACEHOLDER] = 128
+view.indic_style[textadept.snippets.INDIC_PLACEHOLDER] = view.INDIC_COMPOSITIONTHICK
 
 -- Call tips.
 view.call_tip_fore_hlt = colors.tosca

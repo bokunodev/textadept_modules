@@ -1,9 +1,9 @@
 local M = {}
 
-M.format_command = 'gofmt -s -w'
+M.format_command = 'pyflakes'
 
 events.connect(events.FILE_AFTER_SAVE, function()
-    if buffer:get_lexer() ~= 'go' then return end
+    if buffer:get_lexer() ~= 'python' then return end
     local p = io.popen(('%s %s 2>&1'):format(M.format_command,buffer.filename))
     local out = p:read('*a')
     local status = {p:close()}
@@ -14,7 +14,7 @@ events.connect(events.FILE_AFTER_SAVE, function()
         ui.print(M.format_command..' not installed!.')
         return
     end
-    local line,col,msg = string.match(out,'.*:(%d+):(%d+):([^\n]+)')
+    local line,col,msg = string.match(out,'(%d+):(%d+):? ([^\n]+)')
     line = tonumber(line)
     buffer.annotation_clear_all()
     buffer.annotation_visible = buffer.ANNOTATION_BOXED
@@ -22,10 +22,5 @@ events.connect(events.FILE_AFTER_SAVE, function()
     buffer.annotation_style[line] = 6
     textadept.editing.goto_line(line)
 end)
-
-snippets.go = {
-    ['if err'] = 'err = %1\nif err != nil {\n\t%0\n}\n',
-    ['func'] = 'func %1%(%2)%3 {\n\t%0\n}',
-}
 
 return M
