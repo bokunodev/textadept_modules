@@ -1,6 +1,3 @@
-_M['go'] = require('go')
-_M['go'].format_command = 'goimports -w'
-
 _M['m/f'] = require('functions')
 
 keys['ctrl+`'] = function() _M['m/f'].enclose_selection('`', '`') end
@@ -10,16 +7,17 @@ keys['ctrl+('] = function() _M['m/f'].enclose_selection('(', ')') end
 keys['ctrl+['] = function() _M['m/f'].enclose_selection('[', ']') end
 keys['ctrl+{'] = function() _M['m/f'].enclose_selection('{', '}') end
 
-keys['ctrl+k'] = function() _M['m/f'].delete_line_or_lines() end
-keys['ctrl+x'] = function() _M['m/f'].cut_line_or_selection() end
-keys['ctrl+c'] = function() _M['m/f'].copy_line_or_selection() end
-keys['ctrl+d'] = function() _M['m/f'].duplicate_line_or_selection() end
+keys['ctrl+k'] = _M['m/f'].delete_line_or_lines()
+keys['ctrl+x'] = _M['m/f'].cut_line_or_selection()
+keys['ctrl+c'] = _M['m/f'].copy_line_or_selection()
+keys['ctrl+d'] = _M['m/f'].duplicate_line_or_selection()
 
-keys['alt+B'] = function() textadept.bookmarks.toggle() end
-keys['alt+S'] = function() io.save_all_files() end
+keys['alt+B'] = textadept.bookmarks.toggle
+keys['alt+S'] = io.save_all_files
+keys['alt+A'] = textadept.snippets.insert
+keys['escape'] = textadept.snippets.cancel_current
 
 view:set_theme('nord',{font = 'Cartograph CF', fontsize = 10})
-buffer.wrap_visual_flags = buffer.WRAPVISUALFLAGLOC_START_BY_TEXT
 buffer.view_ws = buffer.WS_VISIBLEAFTERINDENT
 buffer.tab_draw_mode = buffer.TD_STRIKEOUT
 buffer.wrap_mode = buffer.WRAP_NONE

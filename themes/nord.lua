@@ -33,7 +33,7 @@ styles.fold_display_text = {fore = colors.tosca}
 
 -- Token styles.
 styles.class = {fore = colors.blue}
-styles.comment = {fore = colors.light_grey, back = colors.true_black}
+styles.comment = {fore = colors.true_black, back = colors.light_grey}
 styles.constant = {fore = colors.red}
 styles.embedded = {fore = colors.purple, back = colors.true_black}
 styles.error = {fore = colors.white, back = colors.red, italics = true}
@@ -50,8 +50,8 @@ styles.type = {fore = colors.cyan}
 styles.variable = {fore = colors.blue}
 styles.whitespace = {}
 
-styles.bracelight = {fore = colors.whitest, back = colors.green}
-styles.bracebad = {fore = colors.whitest, back = colors.red}
+-- styles.bracelight = {fore = colors.whitest, back = colors.green}
+-- styles.bracebad = {fore = colors.whitest, back = colors.red}
 
 -- Multiple Selection and Virtual Space
 --view.additional_sel_alpha =
@@ -62,12 +62,12 @@ styles.bracebad = {fore = colors.whitest, back = colors.red}
 -- Caret and Selection Styles.
 -- Selection Style
 view:set_sel_fore(true, colors.whitest)
-view:set_sel_back(true, colors.blue_grey)
-view.sel_alpha = 50
+view:set_sel_back(true, colors.orange)
+-- view.sel_alpha = 100
 -- Current line Style
 view.caret_fore = colors.tosca
-view.caret_line_back = colors.blue_grey
-view.caret_line_back_alpha = 50
+view.caret_line_back = colors.tosca
+view.caret_line_back_alpha = 25
 
 -- Fold Margin.
 view:set_fold_margin_color(true, colors.black)
@@ -87,25 +87,25 @@ for i = buffer.MARKNUM_FOLDEREND, buffer.MARKNUM_FOLDEROPEN do -- fold margin
 end
 
 -- Indicators.
-view.indic_fore[ui.find.INDIC_FIND] = colors.blue_grey
+view.indic_fore[ui.find.INDIC_FIND] = colors.orange
 view.indic_under[ui.find.INDIC_FIND] = true
 view.indic_alpha[ui.find.INDIC_FIND] = 128
-view.indic_style[ui.find.INDIC_FIND] = view.INDIC_GRADIENT -- FULLBOX
+view.indic_style[ui.find.INDIC_FIND] = view.INDIC_GRADIENT
 
-view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.blue_grey
+view.indic_fore[textadept.editing.INDIC_BRACEMATCH] = colors.orange
 view.indic_under[textadept.editing.INDIC_BRACEMATCH] = true
 view.indic_alpha[textadept.editing.INDIC_BRACEMATCH] = 128
-view.indic_style[textadept.editing.INDIC_BRACEMATCH] = view.INDIC_GRADIENT -- FULLBOX
+view.indic_style[textadept.editing.INDIC_BRACEMATCH] = view.INDIC_GRADIENT
 
-view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.blue_grey
+view.indic_fore[textadept.editing.INDIC_HIGHLIGHT] = colors.orange
 view.indic_under[textadept.editing.INDIC_HIGHLIGHT] = true
 view.indic_alpha[textadept.editing.INDIC_HIGHLIGHT] = 128
-view.indic_style[textadept.editing.INDIC_HIGHLIGHT] = view.INDIC_GRADIENT -- FULLBOX
+view.indic_style[textadept.editing.INDIC_HIGHLIGHT] = view.INDIC_GRADIENT
 
-view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.blue_grey
+view.indic_fore[textadept.snippets.INDIC_PLACEHOLDER] = colors.orange
 view.indic_under[textadept.snippets.INDIC_PLACEHOLDER] = true
 view.indic_alpha[textadept.snippets.INDIC_PLACEHOLDER] = 128
-view.indic_style[textadept.snippets.INDIC_PLACEHOLDER] = view.INDIC_GRADIENT -- FULLBOX
+view.indic_style[textadept.snippets.INDIC_PLACEHOLDER] = view.INDIC_GRADIENT
 
 -- Call tips.
 view.call_tip_fore_hlt = colors.tosca
