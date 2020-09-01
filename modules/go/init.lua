@@ -16,7 +16,7 @@ events.connect(events.FILE_AFTER_SAVE, function()
         return
     end
     local line,col,msg = string.match(out,'.*:(%d+):(%d+):([^\n]+)')
-    line = tonumber(line)
+    line = tonumber(line) or 0
     buffer.annotation_clear_all()
     buffer.annotation_visible = buffer.ANNOTATION_BOXED
     buffer.annotation_text[line] = msg
@@ -31,21 +31,24 @@ local prof_templ = [[defer profile.Start(
 ]]
 
 snippets.go = {
-    ['if'] = 'if %1 {\n\t%0\n}',
     ['func'] = 'func %1%(%2)%3%{\n\t%0\n}',
-    ['defer_func'] = 'defer func(){\n\t%0\n}()',
-    ['package'] = 'package %1\nfunc %2(New)(%3)%4 {\n\t%0\n}',
-    ['package_main'] = 'package main\nfunc main() {\n\t%0\n}',
+    ['goFunc'] = 'go func(%1){\n\t%0\n}(%2)',
+    ['deferFunc'] = 'defer func(%1){\n\t%0\n}(%2)',
+    ['pkg'] = 'package %1\nfunc %2(New)(%3)%4 {\n\t%0\n}',
+    ['pkgMain'] = 'package main\nfunc main() {\n\t%0\n}',
+    ['if'] = 'if %1 {\n\t%0\n}',
+    ['ifErr'] = 'if err != nil {\n\t%0\n}',
+    ['ifErrFatal'] = 'if err != nil {\n\tLog.Fatal(err)\n}',
     -- github.com/pkg/profile
-    ['profile_cpu'] = prof_templ:format('profile.CPUProfile'),
-    ['profile_mem'] = prof_templ:format('profile.MemProfile'),
-    ['profile_mutex'] = prof_templ:format('profile.MutexProfile'),
-    ['profile_trace'] = prof_templ:format('profile.TraceProfile'),
-    ['profile_block'] = prof_templ:format('profile.BlockProfile'),
-    ['profile_heap'] = prof_templ:format('profile.MemProfileHeap'),
-    ['profile_alloc'] = prof_templ:format('profile.MemProfileAllocs'),
-    ['profile_goroutine'] = prof_templ:format('profile.GoroutineProfile'),
-    ['profile_thread'] = prof_templ:format('profile.ThreadcreationProfile'),
+    ['profCpu'] = prof_templ:format('profile.CPUProfile'),
+    ['profMem'] = prof_templ:format('profile.MemProfile'),
+    ['profMutex'] = prof_templ:format('profile.MutexProfile'),
+    ['profTrace'] = prof_templ:format('profile.TraceProfile'),
+    ['profBlock'] = prof_templ:format('profile.BlockProfile'),
+    ['profHeap'] = prof_templ:format('profile.MemProfileHeap'),
+    ['profAlloc'] = prof_templ:format('profile.MemProfileAllocs'),
+    ['profGoroutine'] = prof_templ:format('profile.GoroutineProfile'),
+    ['profThread'] = prof_templ:format('profile.ThreadcreationProfile'),
 }
 
 return M

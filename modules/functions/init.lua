@@ -43,7 +43,7 @@ function M.copy_line_or_selection()
         buffer:copy()
     end
 end
-
+  
 function M.duplicate_line_or_selection()
     buffer:begin_undo_action()
     if buffer.selection_empty then
