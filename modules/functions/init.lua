@@ -54,5 +54,14 @@ function M.duplicate_line_or_selection()
     buffer:end_undo_action()
 end
 
+function M.exo_open_terminal()
+    if buffer.filename ~= nil then
+        dir,_ = buffer.filename:gsub('(.*)/([^/]*)$','%1')
+    else
+        dir = lfs.currentdir()
+    end
+    os.execute(('exo-open --launch TerminalEmulator --working-directory %s &'):format(dir))
+end
+
 return M
 

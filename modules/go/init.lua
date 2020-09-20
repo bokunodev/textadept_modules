@@ -31,6 +31,7 @@ local prof_templ = [[defer profile.Start(
 ]]
 
 snippets.go = {
+    ['varErr'] = 'var err error\n',
     ['func'] = 'func %1%(%2)%3%{\n\t%0\n}',
     ['goFunc'] = 'go func(%1){\n\t%0\n}(%2)',
     ['deferFunc'] = 'defer func(%1){\n\t%0\n}(%2)',
@@ -38,7 +39,7 @@ snippets.go = {
     ['pkgMain'] = 'package main\nfunc main() {\n\t%0\n}',
     ['if'] = 'if %1 {\n\t%0\n}',
     ['ifErr'] = 'if err != nil {\n\t%0\n}',
-    ['ifErrFatal'] = 'if err != nil {\n\tLog.Fatal(err)\n}',
+    ['ifErrFatal'] = 'if err != nil {\n\tlog.Fatal(err)\n}',
     -- github.com/pkg/profile
     ['profCpu'] = prof_templ:format('profile.CPUProfile'),
     ['profMem'] = prof_templ:format('profile.MemProfile'),
