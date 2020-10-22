@@ -27,7 +27,21 @@ events.connect(events.FILE_AFTER_SAVE, function()
     textadept.editing.goto_line(line)
 end)
 
+--[[ golang keywords
+break        default      func         interface    select
+case         defer        go           map          struct
+chan         else         goto         package      switch
+const        fallthrough  if           range        type
+continue     for          import       return       var
+]]
+
 snippets.go = {
+	['if'] = 'if err != nil {\n\t%0\n}',
+	['defer'] = 'defer func(%1){\n\t%0\n}(%2)',
+	['for'] = 'for %2(_),%3(_):=range %1{\n\t%0\n}',
+	['var'] = 'var(\n\t%0\n)',
+	['type'] = 'type(\n\t%0\n)',
+	['const'] = 'const(\n\t%0\n)',
 }
 
 return M
