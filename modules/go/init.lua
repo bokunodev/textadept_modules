@@ -36,12 +36,28 @@ continue     for          import       return       var
 ]]
 
 snippets.go = {
-	['if'] = 'if err != nil {\n\t%0\n}',
-	['defer'] = 'defer func(%1){\n\t%0\n}(%2)',
-	['for'] = 'for %2(_),%3(_):=range %1{\n\t%0\n}',
-	['var'] = 'var(\n\t%0\n)',
-	['type'] = 'type(\n\t%0\n)',
-	['const'] = 'const(\n\t%0\n)',
+	['if']     = 'if %1(err!=nil) { %0 }',
+	['else']   = 'else { %0 }',
+	['elseif'] = 'elseif %1 { %0 }',
+	['func']   = 'func %1(main)(%2)%3 { %0 }',
+	['for']    = 'for %1 { %0 }',
+	['range']  = 'for %1(_,_)=range %2 { %0 }',
+	['select'] = 'select {\ncase %1:\n}',
+	['switch'] = 'switch %1 {\ncase %2:\ndefault:\n}',
+	['defer']  = 'defer func(){ %0 }()',
+	['var']    = 'var (\n%0\n)',
+	['type']   = 'type (\n%0\n)',
+	['const']  = 'const (\n%0\n)',
+
+    ['logF']    = 'log.Fatal(%0)',
+    ['logFf']   = 'log.Fatalf("%1", %0)',
+    ['logFln']  = 'log.Fatalln(%0)',
+    ['logP']    = 'log.Panic(%0)',
+    ['logPf']   = 'log.Panicf("%1", %0)',
+    ['logPln']  = 'log.Panicln(%0)',
+    ['logPr']   = 'log.Print(%0)',
+    ['logPrf']  = 'log.Printf("%1", %0)',
+    ['logPrln'] = 'log.Println(%0)',
 }
 
 return M
