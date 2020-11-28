@@ -12,7 +12,7 @@ events.connect(events.FILE_AFTER_SAVE, function()
     local out = p:read('*a')
     local status = {p:close()}
     if status[3] == 0 then
-        buffer.reload()
+        buffer:reload()
         return
     elseif status[3] == 127 then
         ui.print(M.format_command..' not installed!.')
