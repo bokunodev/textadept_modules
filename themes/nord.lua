@@ -50,8 +50,8 @@ styles.type = {fore = colors.cyan}
 styles.variable = {fore = colors.blue}
 styles.whitespace = {}
 
--- styles.bracelight = {fore = colors.whitest, back = colors.green}
--- styles.bracebad = {fore = colors.whitest, back = colors.red}
+styles.bracelight = {fore = colors.whitest, back = colors.green}
+styles.bracebad = {fore = colors.whitest, back = colors.red}
 
 -- Multiple Selection and Virtual Space
 --view.additional_sel_alpha =
