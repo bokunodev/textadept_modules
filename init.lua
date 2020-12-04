@@ -1,11 +1,21 @@
 _M['m/f'] = require('functions')
 
-keys['ctrl+`']  = function() textadept.editing.enclose('`', '`') end
-keys['ctrl+\''] = function() textadept.editing.enclose('\'', '\'') end
-keys['ctrl+"']  = function() textadept.editing.enclose('"', '"') end
-keys['ctrl+(']  = function() textadept.editing.enclose('(', ')') end
-keys['ctrl+[']  = function() textadept.editing.enclose('[', ']') end
-keys['ctrl+{']  = function() textadept.editing.enclose('{', '}') end
+textadept.editing.auto_pairs = {}
+textadept.editing.auto_pairs[40]=")"
+textadept.editing.auto_pairs[91]="]"
+textadept.editing.auto_pairs[123]="}"
+textadept.editing.auto_pairs[34]="\""
+textadept.editing.auto_pairs[39]="'"
+textadept.editing.auto_pairs[96]="`"
+
+textadept.editing.typeover_chars = {}
+textadept.editing.typeover_chars[62]=true
+textadept.editing.typeover_chars[41]=true
+textadept.editing.typeover_chars[93]=true
+textadept.editing.typeover_chars[125]=true
+textadept.editing.typeover_chars[34]=true
+textadept.editing.typeover_chars[39]=true
+textadept.editing.typeover_chars[96]=true
 
 keys['ctrl+k'] = _M['m/f'].delete_line_or_lines
 keys['ctrl+x'] = _M['m/f'].cut_line_or_selection
@@ -19,6 +29,8 @@ keys['alt+B']  = textadept.bookmarks.toggle
 keys['alt+S']  = io.save_all_files
 keys['alt+a']  = textadept.snippets.insert
 keys['escape'] = textadept.snippets.cancel_current
+
+textadept.editing.auto_enclose = true
 
 view:set_theme('nord',{font = 'Cartograph CF', fontsize = 10})
 view.annotation_visible = view.ANNOTATION_BOXED
