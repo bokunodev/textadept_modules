@@ -1,4 +1,3 @@
-local buffer,view = buffer,view
 local M = {}
 
 buffer.tab_indents = true
