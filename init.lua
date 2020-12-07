@@ -1,3 +1,6 @@
+_M.go=require("go")
+_M.go.format_command="gofumports -w"
+
 keys["ctrl+l"]=function() buffer:line_join() end
 keys["ctrl+k"]=function() buffer:line_delete() end
 keys["ctrl+x"]=function() if buffer.selection_empty then buffer:line_cut() else buffer:cut() end end

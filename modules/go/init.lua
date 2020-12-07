@@ -1,13 +1,9 @@
 local M={}
 
-M.mautocomplete_snippets=true
-
 buffer.tab_indents=true
 buffer.use_tabs=true
 
--- M.format_command='gofmt -s -w'
--- M.format_command='goimports -w'
-M.format_command='gofumports -w'
+M.format_command='gofmt -s -w'
 
 events.connect(events.FILE_AFTER_SAVE, function(file)
     if buffer:get_lexer() ~= 'go' then return end
@@ -21,7 +17,7 @@ events.connect(events.FILE_AFTER_SAVE, function(file)
         ui.print(M.format_command..' not installed!.')
         return
     end
-    local errors=string.gmatch(out,'(%d+):(%d+): ([^\n]+)')
+    local errors=string.gmatch(out,'.-:(%d+):(%d+): ([^\n]+)')
     buffer:annotation_clear_all()
     for line,col,msg in errors do
         line=tonumber(line) or 1
@@ -29,6 +25,10 @@ events.connect(events.FILE_AFTER_SAVE, function(file)
         buffer.annotation_style[line]=13
     end
 end)
+
+textadept.run.compile_commands.go="go build %p"
+textadept.run.run_commands.go="go run %p"
+textadept.run.error_patterns.go={"(.-):(%d+):(%d+): ([^\n]+)"}
 
 --[[ go reserved keywords
 break        default      func         interface    select
