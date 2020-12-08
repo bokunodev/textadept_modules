@@ -17,7 +17,7 @@ events.connect(events.FILE_AFTER_SAVE, function(file)
         ui.print(M.format_command..' not installed!.')
         return
     end
-    local errors=string.gmatch(out,"^.-:(%d+):%d+: ([^\n]+)$")
+    local errors=string.gmatch(out,".-:(%d+)(:%d+: [^\n]+)")
     buffer:annotation_clear_all()
     for line,msg in errors do
         line=tonumber(line) or 1
