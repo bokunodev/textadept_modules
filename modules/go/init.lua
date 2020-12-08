@@ -17,18 +17,18 @@ events.connect(events.FILE_AFTER_SAVE, function(file)
         ui.print(M.format_command..' not installed!.')
         return
     end
-    local errors=string.gmatch(out,'.-:(%d+):(%d+): ([^\n]+)')
+    local errors=string.gmatch(out,"^.-:(%d+):%d+: ([^\n]+)$")
     buffer:annotation_clear_all()
-    for line,col,msg in errors do
+    for line,msg in errors do
         line=tonumber(line) or 1
         buffer.annotation_text[line]=msg
         buffer.annotation_style[line]=13
     end
 end)
 
-textadept.run.compile_commands.go="go build %p"
-textadept.run.run_commands.go="go run %p"
-textadept.run.error_patterns.go={"(.-):(%d+):(%d+): ([^\n]+)"}
+textadept.run.compile_commands.go="gobuild %p"
+textadept.run.run_commands.go="gorun %p"
+textadept.run.error_patterns.go={"^(.-):(%d+):(%d+): ([^\n]+)$"}
 
 --[[ go reserved keywords
 break        default      func         interface    select
@@ -47,5 +47,7 @@ snip["const"]="const (\n%0\n)"
 snip["type"]="type (\n%0\n)"
 snip["var"]="var (\n%0\n)"
 snip["err"]="var err error"
+snip["struct"]="struct {\n%0\n}"
+snip["interface"]="interface {\n%0\n}"
 
 return M
