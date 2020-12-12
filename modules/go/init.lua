@@ -17,11 +17,11 @@ events.connect(events.FILE_AFTER_SAVE, function(file)
         ui.print(M.format_command..' not installed!.')
         return
     end
-    local errors=string.gmatch(out,".-:(%d+)(:%d+: [^\n]+)")
+    local errors=string.gmatch(out,".-:(%d+):(%d+):([^\n]+)")
     buffer:annotation_clear_all()
     for line,msg in errors do
         line=tonumber(line) or 1
-        buffer.annotation_text[line]=msg
+        buffer.annotation_text[line]=col..":"..msg
         buffer.annotation_style[line]=13
     end
 end)
@@ -39,15 +39,17 @@ continue     for          import       return       var
 ]]
 
 local snip=snippets.go
-snip["main"]="package main\n\nfunc main(){\n%0\n}"
+snip["main"]="package main\n\nfunc main(){\n\t%0\n}"
 snip["if"]="if %1(err!=nil) {\n%0\n}"
 snip["select"]="select {\ncase %1(<-c):\n%0\n}"
 snip["switch"]="switch %1 {\ncase %2(true):\n%0\n}"
-snip["const"]="const (\n%0\n)"
-snip["type"]="type (\n%0\n)"
-snip["var"]="var (\n%0\n)"
+snip["const"]="const (\n\t%0\n)"
+snip["type"]="type (\n\t%0\n)"
+snip["var"]="var (\n\t%0\n)"
 snip["err"]="var err error"
-snip["struct"]="struct {\n%0\n}"
-snip["interface"]="interface {\n%0\n}"
+snip["ret"]="return %0"
+snip["struct"]="struct {\n\t%0\n}"
+snip["func"]="func %1(main)(%2)%3 {\n\t%0\n}"
+snip["interface"]="interface {\n\t%0\n}"
 
 return M

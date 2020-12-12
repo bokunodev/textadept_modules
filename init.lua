@@ -38,6 +38,7 @@ textadept.editing.typeover_chars[96]=true
 
 textadept.editing.strip_trailing_spaces=true
 textadept.editing.auto_enclose=true
+textadept.session.save_on_quit=true
 
 view:set_theme('nord',{font='Cartograph CF', fontsize=10})
 view.annotation_visible=view.ANNOTATION_BOXED
