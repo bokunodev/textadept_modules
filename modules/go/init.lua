@@ -41,8 +41,8 @@ continue     for          import       return       var
 local snip=snippets.go
 snip["main"]="package main\n\nfunc main(){\n\t%0\n}"
 snip["if"]="if %1(err!=nil) {\n%0\n}"
-snip["select"]="select {\ncase %1(<-c):\n%0\n}"
-snip["switch"]="switch %1 {\ncase %2(true):\n%0\n}"
+snip["select"]="select {\ncase %1(<-c):\n\t%0\ndefault:\n}"
+snip["switch"]="switch %1 {\ncase %2(true):\n\t%0\ndefault:\n}"
 snip["const"]="const (\n\t%0\n)"
 snip["type"]="type (\n\t%0\n)"
 snip["var"]="var (\n\t%0\n)"
