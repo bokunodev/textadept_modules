@@ -1,5 +1,5 @@
 _M.go=require("go")
-_M.go.format_command="gofumports -w"
+_M.go.format_command="goimports -w"
 
 keys["ctrl+k"]=function() buffer:line_delete() end
 keys["ctrl+x"]=function() if buffer.selection_empty then buffer:line_cut() else buffer:cut() end end
@@ -52,3 +52,14 @@ buffer.tab_width=4
 
 ui.maximized=true
 _SEMANATIC=true
+
+-- try to load textadept session file in current directory, if exists.
+-- to act like workspace file in vscode or sublime.
+events.connect(events.INITIALIZED, function()
+	local fi = lfs.attributes(".ta_session")
+	if fi~=nil and fi.mode=="file" then
+		textadept.session.load(".ta_session")
+	else
+		textadept.session.load(nil)
+	end
+end)
