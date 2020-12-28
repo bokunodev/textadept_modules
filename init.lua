@@ -59,7 +59,5 @@ events.connect(events.INITIALIZED, function()
 	local fi = lfs.attributes(".ta_session")
 	if fi~=nil and fi.mode=="file" then
 		textadept.session.load(".ta_session")
-	else
-		textadept.session.save(".ta_session")
 	end
 end)
