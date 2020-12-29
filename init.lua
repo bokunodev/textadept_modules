@@ -10,7 +10,7 @@ keys["esc"]=textadept.snippets.cancel_current
 keys["ctrl+space"]=textadept.editing.autocomplete
 keys["alt+i"]=function()
     local c=ui.dialogs.colorselect({
-        title="color picker",
+        title="Pick a color",
         color="#ff0000",
         palette=false,
         string_output=true,
@@ -20,20 +20,20 @@ keys["alt+i"]=function()
 end
 
 textadept.editing.auto_pairs={}
-textadept.editing.auto_pairs[40]=")"
-textadept.editing.auto_pairs[91]="]"
-textadept.editing.auto_pairs[123]="}"
-textadept.editing.auto_pairs[34]="\""
-textadept.editing.auto_pairs[39]="'"
-textadept.editing.auto_pairs[96]="`"
+textadept.editing.auto_pairs[string.byte("(")]=")"
+textadept.editing.auto_pairs[string.byte("[")]="]"
+textadept.editing.auto_pairs[string.byte("{")]="}"
+textadept.editing.auto_pairs[string.byte("\"")]="\""
+textadept.editing.auto_pairs[string.byte("'")]="'"
+textadept.editing.auto_pairs[string.byte("`")]="`"
 
 textadept.editing.typeover_chars={}
-textadept.editing.typeover_chars[41]=true
-textadept.editing.typeover_chars[93]=true
-textadept.editing.typeover_chars[125]=true
-textadept.editing.typeover_chars[34]=true
-textadept.editing.typeover_chars[39]=true
-textadept.editing.typeover_chars[96]=true
+textadept.editing.typeover_chars[string.byte(")")]  =true
+textadept.editing.typeover_chars[string.byte("]")]  =true
+textadept.editing.typeover_chars[string.byte("}")]  =true
+textadept.editing.typeover_chars[string.byte("\"")] =true
+textadept.editing.typeover_chars[string.byte("'")]  =true
+textadept.editing.typeover_chars[string.byte("`")]  =true
 
 textadept.editing.strip_trailing_spaces=true
 textadept.editing.auto_enclose=true
