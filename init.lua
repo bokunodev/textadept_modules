@@ -19,13 +19,15 @@ keys["alt+i"]=function()
     if c~=nil then buffer:insert_text(-1,c) end
 end
 
+textadept.editing.auto_enclose=true
+
 textadept.editing.auto_pairs={}
-textadept.editing.auto_pairs[string.byte("(")]=")"
-textadept.editing.auto_pairs[string.byte("[")]="]"
-textadept.editing.auto_pairs[string.byte("{")]="}"
-textadept.editing.auto_pairs[string.byte("\"")]="\""
-textadept.editing.auto_pairs[string.byte("'")]="'"
-textadept.editing.auto_pairs[string.byte("`")]="`"
+textadept.editing.auto_pairs[string.byte("(")]  =")"
+textadept.editing.auto_pairs[string.byte("[")]  ="]"
+textadept.editing.auto_pairs[string.byte("{")]  ="}"
+textadept.editing.auto_pairs[string.byte("\"")] ="\""
+textadept.editing.auto_pairs[string.byte("'")]  ="'"
+textadept.editing.auto_pairs[string.byte("`")]  ="`"
 
 textadept.editing.typeover_chars={}
 textadept.editing.typeover_chars[string.byte(")")]  =true
@@ -36,7 +38,6 @@ textadept.editing.typeover_chars[string.byte("'")]  =true
 textadept.editing.typeover_chars[string.byte("`")]  =true
 
 textadept.editing.strip_trailing_spaces=true
-textadept.editing.auto_enclose=true
 textadept.session.save_on_quit=true
 
 view:set_theme('nord',{font='mononoki', fontsize=10})
